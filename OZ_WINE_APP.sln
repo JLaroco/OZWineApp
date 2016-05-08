@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OZ_WINE_APP", "OZ_WINE_APP.csproj", "{43595EE8-1604-4774-BF2B-B9CEF4E4BEAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43595EE8-1604-4774-BF2B-B9CEF4E4BEAF}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{43595EE8-1604-4774-BF2B-B9CEF4E4BEAF}.Debug|iPhone.Build.0 = Debug|iPhone
+		{43595EE8-1604-4774-BF2B-B9CEF4E4BEAF}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{43595EE8-1604-4774-BF2B-B9CEF4E4BEAF}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{43595EE8-1604-4774-BF2B-B9CEF4E4BEAF}.Release|iPhone.ActiveCfg = Release|iPhone
+		{43595EE8-1604-4774-BF2B-B9CEF4E4BEAF}.Release|iPhone.Build.0 = Release|iPhone
+		{43595EE8-1604-4774-BF2B-B9CEF4E4BEAF}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{43595EE8-1604-4774-BF2B-B9CEF4E4BEAF}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal
