@@ -6,6 +6,7 @@ namespace OZ_WINE_APP
 {
 	public partial class ConfigurationViewController : UIViewController
 	{
+		SQL_DatabaseFunctions DBFunctions = new SQL_DatabaseFunctions();
 		//public ConfigurationViewController () : base ("ConfigurationViewController", null)
 		public ConfigurationViewController (IntPtr p) : base(p)	
 		{
@@ -14,8 +15,17 @@ namespace OZ_WINE_APP
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			testConnection ();
-			saveConfigData ();
+			DBFunctions.CreateTable();
+			ServerTxt.Text = DBFunctions.ReturnConfigServer ();
+			DomainTxt.Text = DBFunctions.ReturnConfigDomain ();
+			UsernameTxt.Text = DBFunctions.ReturnConfigUsername ();
+			PasswordTxt.Text = DBFunctions.ReturnConfigPassword ();
+			LocationTxt.Text = DBFunctions.ReturnConfigLocation ();
+
+			TestConnectionBtn.TouchUpInside += testConnection;
+			SaveConfigBtn.TouchUpInside += saveConfigData;
+			//testConnection ();
+			//saveConfigData ();
 
 
 			// Perform any additional setup after loading the view, typically from a nib.
@@ -27,29 +37,17 @@ namespace OZ_WINE_APP
 			// Release any cached data, images, etc that aren't in use.
 		}
 
-		void testConnection() {
-
-			TestConnectionBtn.TouchUpInside += (object sender, EventArgs e) => {
-				
-					UIAlertView alert = new UIAlertView();
-					alert.Title = "SUCCESS/ERROR";
-					alert.AddButton("OK");
-					alert.Message = "Test Connection here.";
-					alert.Show();
-			};
+		void testConnection (object sender, EventArgs e) {	
+			DBFunctions.TestDB();
+			UIAlertView alert = new UIAlertView();
+			alert.Title = "SUCCESS/ERROR";
+			alert.AddButton("OK");
+			alert.Message = "Test Connection here.";
+			alert.Show();
 
 		}
-		void saveConfigData() {
-
-			SaveConfigBtn.TouchUpInside += (object sender, EventArgs e) => {
-
-				UIAlertView alert = new UIAlertView();
-				alert.Title = "SAVED TO DATABASE.";
-				alert.AddButton("OK");
-				alert.Message = "Save Config Data locally.";
-				alert.Show();
-			};
-
+		void saveConfigData(object sender, EventArgs e) {
+			DBFunctions.InsertUpdateTable(1,ServerTxt.Text,DomainTxt.Text,UsernameTxt.Text,PasswordTxt.Text,LocationTxt.Text,"English","ALL");
 		}
 	}
 }
