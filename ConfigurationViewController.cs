@@ -1,11 +1,19 @@
 ﻿using System;
-
+using System.IO;
+using CoreGraphics;
+using Mono.Data.Sqlite;
+using System.Data;
+using Foundation;
 using UIKit;
+using SQLite;
+
 
 namespace OZ_WINE_APP
 {
 	public partial class ConfigurationViewController : UIViewController
 	{
+		private string _pathToDatabase;		//Path To DB
+
 		SQL_DatabaseFunctions DBFunctions = new SQL_DatabaseFunctions();
 		//public ConfigurationViewController () : base ("ConfigurationViewController", null)
 		public ConfigurationViewController (IntPtr p) : base(p)	
@@ -15,12 +23,23 @@ namespace OZ_WINE_APP
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			DBFunctions.CreateTable();
-			ServerTxt.Text = DBFunctions.ReturnConfigServer ();
+
+			//Create Table if not created already -
+			var documents = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+			_pathToDatabase = Path.Combine(documents, "db_sqlite-net.db");
+			using (var conn= new SQLite.SQLiteConnection(_pathToDatabase))
+			{
+				conn.CreateTable<SQL_ConfigTable>();
+			}
+			//Create Table if not created already +
+
+
+
+			/*ServerTxt.Text = DBFunctions.ReturnConfigServer ();
 			DomainTxt.Text = DBFunctions.ReturnConfigDomain ();
 			UsernameTxt.Text = DBFunctions.ReturnConfigUsername ();
 			PasswordTxt.Text = DBFunctions.ReturnConfigPassword ();
-			LocationTxt.Text = DBFunctions.ReturnConfigLocation ();
+			LocationTxt.Text = DBFunctions.ReturnConfigLocation ();*/
 
 			TestConnectionBtn.TouchUpInside += testConnection;
 			SaveConfigBtn.TouchUpInside += saveConfigData;
@@ -39,6 +58,12 @@ namespace OZ_WINE_APP
 
 		void testConnection (object sender, EventArgs e) {	
 			DBFunctions.TestDB();
+
+			//Test Connection Here -
+			//http://ozsql02.hq.oztera.com:7047/teravina/WS/TeraVina%20Demo/Codeunit/MobileCellarMgt
+			//Test Connection Here +
+
+
 			UIAlertView alert = new UIAlertView();
 			alert.Title = "SUCCESS/ERROR";
 			alert.AddButton("OK");

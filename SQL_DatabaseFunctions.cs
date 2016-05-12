@@ -49,6 +49,42 @@ namespace OZ_WINE_APP
 				alert.Message = ex.Message;
 				alert.Show();
 			}
+
+			/*public void Update(SqliteConnection conn) {
+
+				// Clear last connection to prevent circular call to update
+				_conn = null;
+
+				// Execute query
+				conn.Open ();
+				using (var command = conn.CreateCommand ()) {
+					// Create new command
+					command.CommandText = "UPDATE [People] SET Name = @COL2, Occupation = @COL3, isManager = @COL4, ManagerID = @COL5 WHERE ID = @COL1";
+
+					// Populate with data from the record
+					command.Parameters.AddWithValue ("@COL1", ID);
+					command.Parameters.AddWithValue ("@COL2", Name);
+					command.Parameters.AddWithValue ("@COL3", Occupation);
+					command.Parameters.AddWithValue ("@COL4", isManager);
+					command.Parameters.AddWithValue ("@COL5", ManagerID);
+
+					// Write to database
+					command.ExecuteNonQuery ();
+				}
+				conn.Close ();
+
+				// Save children to database as well
+				for (nuint n = 0; n < People.Count; ++n) {
+					// Grab person
+					var Person = People.GetItem<PersonModel>(n);
+
+					// Update sub record
+					Person.Update (conn);
+				}
+
+				// Save last connection
+				_conn = conn;
+			}*/
 		}
 
 		public string ReturnConfigServer()
