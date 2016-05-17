@@ -32,14 +32,7 @@ namespace OZ_WINE_APP
 				conn.CreateTable<SQL_ConfigTable>();
 			}
 			//Create Table if not created already +
-
-
-
-			/*ServerTxt.Text = DBFunctions.ReturnConfigServer ();
-			DomainTxt.Text = DBFunctions.ReturnConfigDomain ();
-			UsernameTxt.Text = DBFunctions.ReturnConfigUsername ();
-			PasswordTxt.Text = DBFunctions.ReturnConfigPassword ();
-			LocationTxt.Text = DBFunctions.ReturnConfigLocation ();*/
+			setInitialData();
 
 			TestConnectionBtn.TouchUpInside += testConnection;
 			SaveConfigBtn.TouchUpInside += saveConfigData;
@@ -56,12 +49,47 @@ namespace OZ_WINE_APP
 			// Release any cached data, images, etc that aren't in use.
 		}
 
+		void setInitialData() {
+			try {
+				var db = new SQLiteConnection (_pathToDatabase);
+				if (db.Table<SQL_ConfigTable> ().Count () == 0) {
+					ServerTxt.Text = "";
+					DomainTxt.Text = "";
+					UsernameTxt.Text = "";
+					PasswordTxt.Text = "";
+					LocationTxt.Text = "";
+				} else {
+					var configData = db.Get<SQL_ConfigTable> (1);
+					ServerTxt.Text = configData.Server;
+					DomainTxt.Text = configData.Domain;
+					UsernameTxt.Text = configData.Username;
+					PasswordTxt.Text = configData.Password;
+					LocationTxt.Text = configData.Location;
+				}
+			} catch (SQLite.SQLiteException ex) {
+				UIAlertView alert = new UIAlertView();
+				alert.Title = "ERROR";
+				alert.AddButton("OK");
+				alert.Message = ex.Message;
+				alert.Show();
+			}
+		}
+
 		void testConnection (object sender, EventArgs e) {	
 			DBFunctions.TestDB();
 
 			//Test Connection Here -
 			//http://ozsql02.hq.oztera.com:7047/teravina/WS/TeraVina%20Demo/Codeunit/MobileCellarMgt
+			//http://ozsql02.hq.oztera.com:7047/TeraVinaQA/WS/TeraVina%20QA/Codeunit/MobileCellarMgt
 			//Test Connection Here +
+
+			//TeraVinaWebServices.GetTeraVinaVersionCompletedEventArgs;
+			//TeraVinaWebServices.GetTeraVinaVersionCompletedEventHandler;
+			//Console.WriteLine("WORKING!!!!!! TERAVINA VERSION: " + test);
+				//Reference.GetTeraVinaVersion ();
+
+
+
 
 
 			UIAlertView alert = new UIAlertView();
@@ -72,7 +100,32 @@ namespace OZ_WINE_APP
 
 		}
 		void saveConfigData(object sender, EventArgs e) {
-			DBFunctions.InsertUpdateTable(1,ServerTxt.Text,DomainTxt.Text,UsernameTxt.Text,PasswordTxt.Text,LocationTxt.Text,"English","ALL");
+			var data = new SQL_ConfigTable {ID = 1, Server = ServerTxt.Text, Domain = DomainTxt.Text, Username = UsernameTxt.Text, Password = PasswordTxt.Text, Location = LocationTxt.Text, Language = "TEST-LANG1", WorkOrderPref = "TEST-LANG2"};
+			var db = new SQLite.SQLiteConnection (_pathToDatabase);
+
+			try {
+				if (db.Table<SQL_ConfigTable> ().Count () == 0) {
+					db.Insert (data);
+					UIAlertView alert = new UIAlertView();
+					alert.Title = "SUCCESS";
+					alert.AddButton("OK");
+					alert.Message = "Configuration data saved locally.";
+					alert.Show();
+				} else {
+					db.Execute ("UPDATE SQL_ConfigTable SET Server='" + ServerTxt.Text + "',Domain='" + DomainTxt.Text + "',Username='" + UsernameTxt.Text + "',Password='" + PasswordTxt.Text + "',Location='" + LocationTxt.Text + "' WHERE ID=1;");
+					UIAlertView alert = new UIAlertView();
+					alert.Title = "SUCCESS";
+					alert.AddButton("OK");
+					alert.Message = "Configuration data saved locally.";
+					alert.Show();
+				}
+			} catch (SQLite.SQLiteException ex) {
+				UIAlertView alert = new UIAlertView();
+				alert.Title = "ERROR";
+				alert.AddButton("OK");
+				alert.Message = ex.Message;
+				alert.Show();
+			}
 		}
 	}
 }

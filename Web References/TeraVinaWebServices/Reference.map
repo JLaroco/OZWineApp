@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://ozsql02.hq.oztera.com:7047/teravina/WS/TeraVina Demo/Codeunit/MobileCellarMgt" filename="MobileCellarMgt.wsdl" />
+  </Results>
+</DiscoveryClientResultsFile>

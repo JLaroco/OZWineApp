@@ -20,7 +20,6 @@ namespace OZ_WINE_APP
 		public string Location { get; set; }
 		public string Language { get; set; }
 		public string WorkOrderPref { get; set; }
-
 		/*public SQL_ConfigTable ()
 		{
 
