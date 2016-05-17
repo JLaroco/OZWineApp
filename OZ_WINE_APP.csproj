@@ -96,18 +96,23 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
-    <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="TabViewController.xib" />
     <InterfaceDefinition Include="LaunchScreen.xib" />
     <InterfaceDefinition Include="LoginViewController.xib" />
     <InterfaceDefinition Include="ConfigurationViewController.xib" />
+    <InterfaceDefinition Include="Images\Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <None Include="Web References\TeraVinaWebServices\MobileCellarMgt.wsdl" />
-    <None Include="Web References\TeraVinaWebServices\Reference.map">
+    <None Include="Web References\TeraVina2009_MobileCellarMgt_WS\MobileCellarMgt.wsdl" />
+    <None Include="Web References\TeraVina2009_MobileCellarMgt_WS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\TeraVina2013_MobileCellarMgt_WS\MobileCellarMgt.wsdl" />
+    <None Include="Web References\TeraVina2013_MobileCellarMgt_WS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -146,9 +151,13 @@
     <Compile Include="SQLiteAsync.cs" />
     <Compile Include="SQL_ConfigTable.cs" />
     <Compile Include="SQL_DatabaseFunctions.cs" />
-    <Compile Include="Web References\TeraVinaWebServices\Reference.cs">
+    <Compile Include="Web References\TeraVina2009_MobileCellarMgt_WS\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\TeraVina2013_MobileCellarMgt_WS\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WebService2009Functions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -165,8 +174,13 @@
   <ItemGroup>
     <WebReferenceUrl Include="http://ozsql02.hq.oztera.com:7047/teravina/WS/TeraVina Demo/Codeunit/MobileCellarMgt">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\TeraVinaWebServices</RelPath>
+      <RelPath>Web References\TeraVina2009_MobileCellarMgt_WS</RelPath>
       <UpdateFromURL>http://ozsql02.hq.oztera.com:7047/teravina/WS/TeraVina Demo/Codeunit/MobileCellarMgt</UpdateFromURL>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://ozsql02.hq.oztera.com:7047/TeraVinaQA/WS/TeraVina QA/Codeunit/MobileCellarMgt">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\TeraVina2013_MobileCellarMgt_WS</RelPath>
+      <UpdateFromURL>http://ozsql02.hq.oztera.com:7047/TeraVinaQA/WS/TeraVina QA/Codeunit/MobileCellarMgt</UpdateFromURL>
     </WebReferenceUrl>
   </ItemGroup>
 </Project>

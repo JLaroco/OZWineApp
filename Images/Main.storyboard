@@ -582,7 +582,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-605" y="-428"/>
+            <point key="canvasLocation" x="-611" y="-430"/>
         </scene>
         <!--Master-->
         <scene sceneID="smW-Zh-WAh">
@@ -694,7 +694,7 @@
                             </label>
                         </subviews>
                     </view>
-                    <tabBarItem key="tabBarItem" id="600" title="Barrel Tracking"/>
+                    <tabBarItem key="tabBarItem" id="600" title="Barrel Tracking" image="SecondImage"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="577" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -722,7 +722,7 @@
                             </label>
                         </subviews>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Work Orders" id="647"/>
+                    <tabBarItem key="tabBarItem" title="Work Orders" id="647" image="FirstImage"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="610" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1444,7 +1444,7 @@
                     <connections>
                         <segue destination="904" kind="relationship" relationship="masterViewController" id="910"/>
                     </connections>
-                    <tabBarItem key="tabBarItem" id="954" title="Bottling Orders" customClass="CustomBottleOrder"/>
+                    <tabBarItem key="tabBarItem" id="954" title="Bottling Orders" customClass="CustomBottleOrder" image="SecondImage"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="912" userLabel="First Responder" sceneMemberID="firstResponder"/>

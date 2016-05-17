@@ -49,45 +49,10 @@ namespace OZ_WINE_APP
 				alert.Message = ex.Message;
 				alert.Show();
 			}
-
-			/*public void Update(SqliteConnection conn) {
-
-				// Clear last connection to prevent circular call to update
-				_conn = null;
-
-				// Execute query
-				conn.Open ();
-				using (var command = conn.CreateCommand ()) {
-					// Create new command
-					command.CommandText = "UPDATE [People] SET Name = @COL2, Occupation = @COL3, isManager = @COL4, ManagerID = @COL5 WHERE ID = @COL1";
-
-					// Populate with data from the record
-					command.Parameters.AddWithValue ("@COL1", ID);
-					command.Parameters.AddWithValue ("@COL2", Name);
-					command.Parameters.AddWithValue ("@COL3", Occupation);
-					command.Parameters.AddWithValue ("@COL4", isManager);
-					command.Parameters.AddWithValue ("@COL5", ManagerID);
-
-					// Write to database
-					command.ExecuteNonQuery ();
-				}
-				conn.Close ();
-
-				// Save children to database as well
-				for (nuint n = 0; n < People.Count; ++n) {
-					// Grab person
-					var Person = People.GetItem<PersonModel>(n);
-
-					// Update sub record
-					Person.Update (conn);
-				}
-
-				// Save last connection
-				_conn = conn;
-			}*/
+				
 		}
 
-		public string ReturnConfigServer()
+		public string GetConfigServer()
 		{
 			String config = "";
 			var db = new SQLite.SQLiteConnection (_pathToDatabase);
@@ -98,7 +63,7 @@ namespace OZ_WINE_APP
 			return config;
 		}
 
-		public string ReturnConfigDomain()
+		public string GetConfigDomain()
 		{
 			String config = "";
 			var db = new SQLite.SQLiteConnection (_pathToDatabase);
@@ -109,7 +74,7 @@ namespace OZ_WINE_APP
 			return config;
 		}
 
-		public string ReturnConfigUsername()
+		public string GetConfigUsername()
 		{
 			String config = "";
 			var db = new SQLite.SQLiteConnection (_pathToDatabase);
@@ -120,7 +85,7 @@ namespace OZ_WINE_APP
 			return config;
 		}
 
-		public string ReturnConfigPassword()
+		public string GetConfigPassword()
 		{
 			String config = "";
 			var db = new SQLite.SQLiteConnection (_pathToDatabase);
@@ -131,7 +96,7 @@ namespace OZ_WINE_APP
 			return config;
 		}
 
-		public string ReturnConfigLocation()
+		public string GetConfigLocation()
 		{
 			String config = "";
 			var db = new SQLite.SQLiteConnection (_pathToDatabase);
@@ -142,14 +107,14 @@ namespace OZ_WINE_APP
 			return config;
 		}
 
-		public void TestDB() 
+		/*public void TestDB() 
 		{
 			var db = new SQLite.SQLiteConnection (_pathToDatabase);
 			var stocksStartingWithA = db.Query<SQL_ConfigTable>("SELECT * FROM SQL_ConfigTable WHERE ID = 1");
 			foreach (var s in stocksStartingWithA) {
 				Console.WriteLine ("ID: " + s.ID + " Server: " + s.Server + " Domain: " + s.Domain + " Username: " + s.Username + " Password: " + s.Password + " Location: " + s.Location);
 			}
-		}
+		}*/
 
 	}
 }

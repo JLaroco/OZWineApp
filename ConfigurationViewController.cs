@@ -6,6 +6,7 @@ using System.Data;
 using Foundation;
 using UIKit;
 using SQLite;
+using OZ_WINE_APP.TeraVina2009_MobileCellarMgt_WS;
 
 
 namespace OZ_WINE_APP
@@ -14,8 +15,7 @@ namespace OZ_WINE_APP
 	{
 		private string _pathToDatabase;		//Path To DB
 
-		SQL_DatabaseFunctions DBFunctions = new SQL_DatabaseFunctions();
-		//public ConfigurationViewController () : base ("ConfigurationViewController", null)
+		//SQL_DatabaseFunctions DBFunctions = new SQL_DatabaseFunctions();
 		public ConfigurationViewController (IntPtr p) : base(p)	
 		{
 		}
@@ -76,27 +76,15 @@ namespace OZ_WINE_APP
 		}
 
 		void testConnection (object sender, EventArgs e) {	
-			DBFunctions.TestDB();
+			WebService2009Functions WSFunctions = new WebService2009Functions();
+			try {
+				string DomainUsername = DomainTxt.Text + "\\" + UsernameTxt.Text;
+				string TeraVinaVersion = WSFunctions.GetTeraVinaVersion(ServerTxt.Text,DomainUsername,PasswordTxt.Text);
+				WSFunctions.DisplaySuccessMessage("TeraVina Version: " + TeraVinaVersion);
 
-			//Test Connection Here -
-			//http://ozsql02.hq.oztera.com:7047/teravina/WS/TeraVina%20Demo/Codeunit/MobileCellarMgt
-			//http://ozsql02.hq.oztera.com:7047/TeraVinaQA/WS/TeraVina%20QA/Codeunit/MobileCellarMgt
-			//Test Connection Here +
-
-			//TeraVinaWebServices.GetTeraVinaVersionCompletedEventArgs;
-			//TeraVinaWebServices.GetTeraVinaVersionCompletedEventHandler;
-			//Console.WriteLine("WORKING!!!!!! TERAVINA VERSION: " + test);
-				//Reference.GetTeraVinaVersion ();
-
-
-
-
-
-			UIAlertView alert = new UIAlertView();
-			alert.Title = "SUCCESS/ERROR";
-			alert.AddButton("OK");
-			alert.Message = "Test Connection here.";
-			alert.Show();
+			} catch(Exception e2){
+				WSFunctions.DisplayErrorMessage (e2.Message);
+			}
 
 		}
 		void saveConfigData(object sender, EventArgs e) {

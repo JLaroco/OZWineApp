@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/MobileCellarMgt" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/MobileCellarMgt" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/MobileCellarMgt" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="LoginRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="username" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="password" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="location" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="LoginRequest_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTeraVinaVersion">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetTeraVinaVersion_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetWorkOrderBatch">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="location" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetWorkOrderBatch_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PutBottlingActivity">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="bottlingNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="date" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="outputQty" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="tankNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="tankConsumedQty" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="runTimeHours" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PutBottlingActivity_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PutAdditionActivity">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="workOrderNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="completedDate" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="lotNos" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qtys" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="unit" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PutAdditionActivity_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="LoginRequest">
+    <part name="parameters" element="tns:LoginRequest" />
+  </message>
+  <message name="LoginRequest_Result">
+    <part name="parameters" element="tns:LoginRequest_Result" />
+  </message>
+  <message name="GetTeraVinaVersion">
+    <part name="parameters" element="tns:GetTeraVinaVersion" />
+  </message>
+  <message name="GetTeraVinaVersion_Result">
+    <part name="parameters" element="tns:GetTeraVinaVersion_Result" />
+  </message>
+  <message name="GetWorkOrderBatch">
+    <part name="parameters" element="tns:GetWorkOrderBatch" />
+  </message>
+  <message name="GetWorkOrderBatch_Result">
+    <part name="parameters" element="tns:GetWorkOrderBatch_Result" />
+  </message>
+  <message name="PutBottlingActivity">
+    <part name="parameters" element="tns:PutBottlingActivity" />
+  </message>
+  <message name="PutBottlingActivity_Result">
+    <part name="parameters" element="tns:PutBottlingActivity_Result" />
+  </message>
+  <message name="PutAdditionActivity">
+    <part name="parameters" element="tns:PutAdditionActivity" />
+  </message>
+  <message name="PutAdditionActivity_Result">
+    <part name="parameters" element="tns:PutAdditionActivity_Result" />
+  </message>
+  <portType name="MobileCellarMgt_Port">
+    <operation name="LoginRequest">
+      <input name="LoginRequest" message="tns:LoginRequest" />
+      <output name="LoginRequest_Result" message="tns:LoginRequest_Result" />
+    </operation>
+    <operation name="GetTeraVinaVersion">
+      <input name="GetTeraVinaVersion" message="tns:GetTeraVinaVersion" />
+      <output name="GetTeraVinaVersion_Result" message="tns:GetTeraVinaVersion_Result" />
+    </operation>
+    <operation name="GetWorkOrderBatch">
+      <input name="GetWorkOrderBatch" message="tns:GetWorkOrderBatch" />
+      <output name="GetWorkOrderBatch_Result" message="tns:GetWorkOrderBatch_Result" />
+    </operation>
+    <operation name="PutBottlingActivity">
+      <input name="PutBottlingActivity" message="tns:PutBottlingActivity" />
+      <output name="PutBottlingActivity_Result" message="tns:PutBottlingActivity_Result" />
+    </operation>
+    <operation name="PutAdditionActivity">
+      <input name="PutAdditionActivity" message="tns:PutAdditionActivity" />
+      <output name="PutAdditionActivity_Result" message="tns:PutAdditionActivity_Result" />
+    </operation>
+  </portType>
+  <binding name="MobileCellarMgt_Binding" type="tns:MobileCellarMgt_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="LoginRequest">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MobileCellarMgt:LoginRequest" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="LoginRequest">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="LoginRequest_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetTeraVinaVersion">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MobileCellarMgt:GetTeraVinaVersion" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetTeraVinaVersion">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetTeraVinaVersion_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetWorkOrderBatch">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MobileCellarMgt:GetWorkOrderBatch" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetWorkOrderBatch">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetWorkOrderBatch_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PutBottlingActivity">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MobileCellarMgt:PutBottlingActivity" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PutBottlingActivity">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PutBottlingActivity_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PutAdditionActivity">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MobileCellarMgt:PutAdditionActivity" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PutAdditionActivity">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PutAdditionActivity_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="MobileCellarMgt">
+    <port name="MobileCellarMgt_Port" binding="tns:MobileCellarMgt_Binding">
+      <address location="http://ozsql02.hq.oztera.com:7047/TeraVinaQA/WS/TeraVina%20QA/Codeunit/MobileCellarMgt" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>
