@@ -1,6 +1,6 @@
 ﻿using System;
-
 using UIKit;
+using OZ_WINE_APP.TeraVina2009_MobileCellarMgt_WS;
 
 namespace OZ_WINE_APP
 {
@@ -14,7 +14,7 @@ namespace OZ_WINE_APP
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			checkLogin ();
+			LoginButton.TouchUpInside += checkLogin;
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -23,26 +23,26 @@ namespace OZ_WINE_APP
 			// Release any cached data, images, etc that aren't in use.
 		}
 
-		void checkLogin() {
-			
-			LoginButton.TouchUpInside += (object sender, EventArgs e) => {
+		void checkLogin(object sender, EventArgs e) {
+			WebService2009Functions WSFunctions = new WebService2009Functions();
+			SQL_DatabaseFunctions DBFunctions = new SQL_DatabaseFunctions ();
+			try {
 				String username = UserTextBox.Text;
 				String password = PasswordTextBox.Text;
 
-				if (username == "admin" && password == "password") 
+				Boolean isSuccess = WSFunctions.isLoginSuccessful (username,password,DBFunctions.GetConfigLocation());
+
+				if (isSuccess) 
 				{
 					PerformSegue("GoToApp", this);
 					//Initialize Segue and go to tab
 				} else 
 				{
-					UIAlertView alert = new UIAlertView();
-					alert.Title = "ERROR";
-					alert.AddButton("OK");
-					alert.Message = "Please enter valid credential.";
-					alert.Show();
+					WSFunctions.DisplayErrorMessage ("Please enter valid NAV credentials.");
 				}
-			};
-		
+			} catch(Exception e2){
+				WSFunctions.DisplayErrorMessage (e2.Message);
+			}
 		}
 	}
 }

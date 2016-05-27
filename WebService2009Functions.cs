@@ -27,6 +27,14 @@ namespace OZ_WINE_APP
 			return Version;
 		}
 
+		public Boolean isLoginSuccessful(string username, string password,string location) {
+			SQL_DatabaseFunctions DBFunctions = new SQL_DatabaseFunctions ();
+			MobileCellarMgt TV = new MobileCellarMgt(DBFunctions.GetConfigServer());
+			TV.Credentials = GetCred ();
+			Boolean SuccessState = TV.LoginRequest(username,password,location);
+			return SuccessState;
+		}
+
 		//Common Alert Functions -
 		public void DisplayErrorMessage(string ErrorMessage) {
 			UIAlertView alert = new UIAlertView();
@@ -43,6 +51,16 @@ namespace OZ_WINE_APP
 			alert.Show();
 		}
 		//Common Alert Functions +
+
+		//Private Credentials Authorizations -
+		private System.Net.ICredentials GetCred() {
+			SQL_DatabaseFunctions DBFunctions = new SQL_DatabaseFunctions ();
+			string username = DBFunctions.GetConfigUsername ();
+			string password = DBFunctions.GetConfigPassword ();
+			System.Net.ICredentials Cred = new System.Net.NetworkCredential (username, password);
+			return Cred;
+		}
+		//Private Credentials Authorizations +
 	}
 }
 

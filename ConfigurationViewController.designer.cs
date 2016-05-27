@@ -16,7 +16,15 @@ namespace OZ_WINE_APP
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIBarButtonItem CancelBtn { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UITextField DomainTxt { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIPickerView LanguagePicker { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -28,7 +36,7 @@ namespace OZ_WINE_APP
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton SaveConfigBtn { get; set; }
+		UIBarButtonItem SaveDbBtn { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -42,11 +50,27 @@ namespace OZ_WINE_APP
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UITextField UsernameTxt { get; set; }
 
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIPickerView WOPicker { get; set; }
+
+		[Action ("SaveDbBtn_Activated:")]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		partial void SaveDbBtn_Activated (UIBarButtonItem sender);
+
 		void ReleaseDesignerOutlets ()
 		{
+			if (CancelBtn != null) {
+				CancelBtn.Dispose ();
+				CancelBtn = null;
+			}
 			if (DomainTxt != null) {
 				DomainTxt.Dispose ();
 				DomainTxt = null;
+			}
+			if (LanguagePicker != null) {
+				LanguagePicker.Dispose ();
+				LanguagePicker = null;
 			}
 			if (LocationTxt != null) {
 				LocationTxt.Dispose ();
@@ -56,9 +80,9 @@ namespace OZ_WINE_APP
 				PasswordTxt.Dispose ();
 				PasswordTxt = null;
 			}
-			if (SaveConfigBtn != null) {
-				SaveConfigBtn.Dispose ();
-				SaveConfigBtn = null;
+			if (SaveDbBtn != null) {
+				SaveDbBtn.Dispose ();
+				SaveDbBtn = null;
 			}
 			if (ServerTxt != null) {
 				ServerTxt.Dispose ();
@@ -71,6 +95,10 @@ namespace OZ_WINE_APP
 			if (UsernameTxt != null) {
 				UsernameTxt.Dispose ();
 				UsernameTxt = null;
+			}
+			if (WOPicker != null) {
+				WOPicker.Dispose ();
+				WOPicker = null;
 			}
 		}
 	}
